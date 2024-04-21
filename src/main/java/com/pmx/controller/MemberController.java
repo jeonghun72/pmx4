@@ -46,8 +46,9 @@ public class MemberController {
             memberService.saveMember(member);
 
         } catch(IllegalStateException e) {
-
-            return "redirect:/admin";
+            System.out.println(e.toString());
+            model.addAttribute("memberDto",memberDto);
+            return "admin/member/member";
         } catch (Exception e) {
             System.out.println(e.toString());
             return "redirect:/admin";
@@ -61,6 +62,9 @@ public class MemberController {
             Member member = Member.createMember(memberDto );
             List<Member> memberList = memberService.listMember(member);
             System.out.println("memberList"+memberList);
+
+            //logger.debug("memberList"+memberList);
+            //log.inof("");
             model.addAttribute("memberList" , memberList );
 
 
