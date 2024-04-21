@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/admin_layout}">
+
+<!-- 현재 화면에서만 사용하는 css -->
+<th:block layout:fragment="css">
+ <link rel="stylesheet" type="text/css" href="/css/custom.css"/>
+</th:block>
+<link rel="stylesheet" href="/css/custom.css">
+
+<!-- 현재 화면에서만 사용하는 js -->
+<!--<th:block layout:fragment="script">-->
+<!--  <script src="main.js"></script>-->
+<!--</th:block>-->
+
+<link rel="stylesheet" href="/css/custom.css">
+<div>
+    <th:block layout:fragment="content">
+        <main class="form-signin w-100 m-auto">
+            <form>
+                <h1 class="h3 mb-3 fw-normal text-primary" style="text-align:center">PMX 관리자</h1>
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">ID</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> 자동 로그인
+                    </label>
+                </div>
+                <div>
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+                    <a href="admin/member/new" class="w-100 btn btn-lg btn-danger" role="button" >회원가입</a>
+
+                </div>
+                <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+            </form>
+        </main>
+
+    </th:block>
+</div>

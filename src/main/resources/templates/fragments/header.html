@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div th:fragment="header">
+    <header class="p-3 text-bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <span class="fs-4">PMX</span>
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li class="nav-link px-2 text-secondary" >
+                        <a class="nav-link" href="/admin/item/new">마스터데이터관리</a>
+                    </li>
+                    <!--li class="nav-link px-2 text-secondary" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"-->
+                    <li class="nav-link px-2 text-secondary">
+                        <a class="nav-link" href="/admin/items">강사,매니관리</a>
+                    </li>
+                    <!--li class="nav-link px-2 text-secondary" sec:authorize="isAuthenticated()"-->
+                    <li class="nav-link px-2 text-secondary">
+                        <a class="nav-link" href="/cart">회원관리</a>
+                    </li>
+                    <li class="nav-link px-2 text-secondary" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" href="/orders">아파트관리</a>
+                    </li>
+                    <li class="nav-link px-2 text-secondary" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" href="/orders">강습관리</a>
+                    </li>
+                    <li class="nav-link px-2 text-secondary" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" href="/orders">환불관리</a>
+                    </li>
+                    <li class="nav-link px-2 text-secondary" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" href="/orders">정산관리</a>
+                    </li>
+                    <li class="nav-link px-2 text-secondary" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" href="/orders">공지관리</a>
+                    </li>
+                    <li class="nav-link px-2 text-secondary" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" href="/orders">커뮤니티관리</a>
+                    </li>
+                    <li class="nav-link px-2 text-secondary" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" href="/orders">통계관리</a>
+                    </li>
+                </ul>
+                <div class="text-end">
+                    <a href="admin" class="btn btn-outline-light me-2" role="button" sec:authorize="isAnonymous()">로그인</a>
+                    <a href="admin" class="btn btn-warning" role="button" sec:authorize="isAuthenticated()">로그아웃</a>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+</html>

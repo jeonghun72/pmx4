@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pmx.mapper.Member">
+
+    <!-- tb_member 테이블 전체 컬럼 -->
+    <!--sql id="Member">
+        MEM_ID
+        MEM_TYPE
+        MEM_USER_ID
+        MEM_USER_PW
+        MEM_NM
+        MEM_BIRTH
+        MEM_EMAIL
+        MEM_SEX
+        MEM_TEL1
+        MEM_TEL2
+        MEM_TEL3
+        MEM_ZIP
+        MEM_ADDR
+        ROLE
+        REG_TIME
+        CREATED_BY
+        UPDATE_TIME
+        MODIFIED_BY
+    </sql-->
+    <select id="idCheck" parameterType="String" resultType="member">
+        SELECT * FRPM MEMBER
+        WHERE MEM_ID = #{memId}
+    </select>
+    <select id="list" parameterType="member" resultType="member">
+        SELECT * FROM MEMBER
+        WHERE 1=1
+        <if test='MEM_ID != null and MEM_ID != ""'>
+            MEM_ID = #{MEM_ID}
+        </if>
+
+        ORDER BY MEM_ID DESC
+    </select>
+    <select id="info" parameterType="String" resultType="member">
+        SELECT * FRPM MEMBER
+         WHERE MBM_ID = #{memId}
+    </select>
+    <insert id="insert" parameterType="member">
+        INSERT INTO MEMBER (
+                MEM_TYPE
+                ,MEM_USER_ID
+                ,MEM_USER_PW
+                ,MEM_NM
+                ,MEM_SEX
+                ,MEM_BIRTH
+                ,MEM_EMAIL
+                ,MEM_TEL1
+                ,MEM_TEL2
+                ,MEM_TEL3
+                ,MEM_ZIP
+                ,MEM_ADDR
+                ,REG_TIME
+                ,CREATED_BY
+                ,UPDATE_TIME
+                ,MODIFIED_BY
+        ) VALUE (
+         #{memType}
+        , #{memUserId}
+        , #{memUserPw}
+        , #{memNm}
+        , #{memSex}
+        , #{memBirth}
+        , #{memEmail}
+        , #{memTel1}
+        , #{memTel2}
+        , #{memTel3}
+        , #{memZip}
+        , #{memAddr}
+        , now()
+        , #{memUserId}
+        , now()
+        , #{memUserId} )
+    </insert>
+    <update id="update" parameterType="member">
+        UPDATE MEMBER
+           SET MEB_TYPE  = #{memType}
+                , MEM_USER_PW  = #{memUserPw}
+                , MEM_NM  = #{memNm}
+                , MEM_SEX  = #{memSex}
+                , MEM_BIRTH = #{memBirth}
+                , MEM_EMAIL  = #{memEmail}
+                , MEM_TEL1  = #{memTel1}
+                , MEM_TEL2  = #{memTel2}
+                , MEM_TEL3  = #{memTel3}
+                , MEM_ZIP  = #{memZip}
+                , MEM_ADDR  = #{memAddr}
+                , UPDATE_TIME = SYSDATE
+                , MODIFIED_BY = #{loginId}
+        WHERE MEM_ID = #{memId}
+    </update>
+    <update id="delete" parameterType="String">
+        UPDATE MEMBER
+        SET DELETE_YN  = #{deleteYn}
+        , UPDATE_TIME = SYSDATE
+        , MODIFIED_BY = #{loginId}
+        WHERE MEM_ID = #{memId}
+    </update>
+</mapper>
+
+

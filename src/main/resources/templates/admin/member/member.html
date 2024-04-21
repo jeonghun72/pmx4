@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/admin_layout}">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" type="text/css" href="/css/member_form.css"/>
+</th:block>
+
+<div>
+    <th:block layout:fragment="content">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <h4 class="mb-3">회원가입</h4>
+                <!--form  th:action="@{/admin/member/reg}" role="form" method="post"  th:object="${memberDto}"-->
+                <form  th:action="@{/admin/member/reg}" action="#" role="form" method="post"  th:object="${memberDto}">
+                    <fieldset class="row mb-3">
+                        <label th:for="memNm" class="col-sm-2 col-form-label pt-0">권한구분</label>
+                        <!--
+                        <div class="col-sm-10">
+                            <div class="form-check-inline">
+                                <input type="radio" value="LETER" th:checked="${memberDto.memType eq 'LETER'}"
+                                       class="form-check-input" id="itemType1" name="memType">
+                                <label  class="form-check-label">강사</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="radio" value="MANER" th:checked="${memberDto.memType eq 'MANER'}"
+                                class="form-check-input" id="itemType2" name="memType">
+                                <label  class="form-check-label">메니져</label>
+                            </div>
+                        </div>
+                        -->
+                    </fieldset>
+                    <div class="row mb-3">
+                        <label th:for="membNm" class="col-sm-2 col-form-label">성명</label>
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{memNm}" class="form-control" placeholder="이름을 입력해주세요">
+                            <p th:if="${#fields.hasErrors('memNm')}" th:errors="*{memNm}" class="validationError">Incorrect data</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label pt-0">성별</label>
+                        <div class="col-sm-10">
+                            <!--
+                            <div class="form-check-inline">
+                                <input type="radio" value="1" th:checked="${memberDto.memSex eq '1'}"
+                                       class="form-check-input" id="membSex1" name="memSex">
+                                <label  class="form-check-label">남</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="radio" value="2" th:checked="${memberDto.memType eq '2'}"
+                                       class="form-check-input" id="memSex2" name="memSex">
+                                <label  class="form-check-label">여</label>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label pt-0">생년월일</label>
+                        <div class ="bir_yy">
+                            <span class="ps_box">
+                                <input type="text" th:field="*{memBirth1}" maxlength="4" placeholder="년(4자리)" class="form-control" >
+                            </span>
+                        </div>
+                        <div class ="bir_mm">
+                             <span class="ps_box">
+                                <input type="text" th:field="*{memBirth2}" maxlength="2" placeholder="월(2자리)" class="form-control" >
+                            </span>
+                        </div>
+                        <div class ="bir_dd">
+                             <span class="ps_box">
+                                <input type="text" th:field="*{memBirth3}" maxlength="2" placeholder="일(2자리)" class="form-control" >
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label th:for="membTel" class="col-sm-2 col-form-label">연락처</label>
+                        <div class="col-sm-10">
+                            <div class ="bir_yy">
+                                 <span class="ps_box">
+                                    <input type="text" th:field="*{memTel1}" maxlength="4" placeholder="" class="form-control" >
+                                </span>
+                            </div>
+                            <div class ="bir_yy">
+                                 <span class="ps_box">
+                                    <input type="text" th:field="*{memTel2}" maxlength="4" placeholder="" class="form-control" >
+                                </span>
+                            </div>
+                            <div class ="bir_yy">
+                                 <span class="ps_box">
+                                    <input type="text" th:field="*{memTel3}" maxlength="4" placeholder="" class="form-control" >
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label th:for="email" class="col-sm-2 col-form-label">이매일</label>
+                        <div class="col-sm-10">
+                            <input type="email" th:field="*{memEmail}" class="form-control" placeholder="이메일을 입력해주세요">
+                            <p th:if="${#fields.hasErrors('memEmail')}" th:errors="*{memEmail}" class="fieldError">Incorrect data</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label th:for="membAddr" class="col-sm-2 col-form-label">주소</label>
+                        <div class="col-sm-10">
+                           <input type="text" th:field="*{memZip}" class="form-control" style="width:160px;padding-left:10px;">
+                           <input type="text" th:field="*{memAddr}" class="form-control">
+                            <p th:if="${#fields.hasErrors('memAddr')}" th:errors="*{memAddr}" class="field-error">Incorrect data</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label th:for="membUserId" class="col-sm-2 col-form-label">아이디</label>
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{memUserId}" class="form-control" placeholder="아이디 입력">
+                            <p th:if="${#fields.hasErrors('memUserId')}" th:errors="*{memUserId}" class="fieldError">Incorrect data</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label th:for="membUserPw" class="col-sm-2 col-form-label">비밀번호</label>
+                        <div class="col-sm-10">
+                            <input type="password" th:field="*{memUserPw}" class="form-control" placeholder="비밀번호 입력">
+                            <p th:if="${#fields.hasErrors('memUserPw')}" th:errors="*{memUserPw}" class="fieldError">Incorrect data</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center">
+                        <button type="submit" class="btn btn-primary" style="">회원가입</button>
+                    </div>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                </form>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </th:block>
+</div>
+
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PXM</title>
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <th:block layout:fragment="script"></th:block>
+    <th:block layout:fragment="css"></th:block>
+
+</head>
+<body>
+
+<th:black th:replace="~{fragments/header::header}"></th:black>
+
+<div class="container">
+    <div>
+        <th:black layout:fragment="content" ></th:black>
+    </div>
+
+</div>
+
+<th:black th:replace="~{fragments/footer::footer}"></th:black>
+
+</body>
+</html>
