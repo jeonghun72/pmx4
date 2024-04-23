@@ -17,11 +17,11 @@ public class MemberRepository {
     }
 
     public List<Member> listMember(Member member) {
-        return sql.selectList("com.pmx.mapper.Member.list" , member);
+        return sql.selectList("com.pmx.mapper.Member.list" );
     }
 
-     public Member chkMemUserId(Member member) {
-         return sql.selectList("com.pxm.mapper.Member.idCheck" , member);
+     public Member findUserId(String userId) {
+         return sql.selectOne("com.pxm.mapper.Member.findUserId" , userId);
 
      }
 

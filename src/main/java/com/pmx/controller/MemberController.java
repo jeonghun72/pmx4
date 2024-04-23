@@ -6,6 +6,7 @@ import com.pmx.entity.Member;
 import com.pmx.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +14,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.util.List;
 
 @Controller
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping(value ="admin/member")
 public class MemberController {
@@ -28,7 +29,7 @@ public class MemberController {
     public String memberForm(Model model){
 
        model.addAttribute("memberDto",new MemberDTO());
-        return "admin/member/memberForm";
+       return "admin/member/memberForm";
     }
 
     @PostMapping(value = "/reg")
@@ -56,6 +57,7 @@ public class MemberController {
 
         return "redirect:/admin";
     }
+
     @RequestMapping(value = "/list")
     public String listMember(MemberDTO memberDto,Model model){
         try {
@@ -63,8 +65,8 @@ public class MemberController {
             List<Member> memberList = memberService.listMember(member);
             System.out.println("memberList"+memberList);
 
-            //logger.debug("memberList"+memberList);
-            //log.inof("");
+            log.debug("bbb");
+            log.info("aaaa");
             model.addAttribute("memberList" , memberList );
 
 

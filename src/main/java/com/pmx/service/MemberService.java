@@ -12,31 +12,27 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class MemberService  {
+public class MemberService {
 
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public Member saveMember(Member member){
-        //this.validateDuplicateMember(member);
+    public Member saveMember(Member member) {
+        this.validateDuplicateMember(member);
         memberRepository.inserMember(member);
         return member;
+    }
+
+    private void validateDuplicateMember(Member member) {
+        Member findMember = memberRepository.findUserId(member.getMemUserId());
+        if (findMember != null) {
+            throw new IllegalStateException("이미 가입된 회원입니다.");
+        }
     }
 
     public List<Member> listMember(Member member) {
         List<Member> list = memberRepository.listMember(member);
         return list;
     }
-/**
-    private void validateDuplicateMember(Member member){
-        //Member findMember = memberRepository.findByMem(member.getMemUserId());
-        Member findMember = memberRepository.findByMemUserId(member);
-        if(findMember != null){
-            throw new IllegalStateException("이미 가입된 회원입니다.");
-        }
-    }
-
-*/
-
 
 }

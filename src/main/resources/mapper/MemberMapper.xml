@@ -25,24 +25,50 @@
         UPDATE_TIME
         MODIFIED_BY
     </sql-->
-    <select id="idCheck" parameterType="String" resultType="member">
-        SELECT * FRPM MEMBER
-        WHERE MEM_ID = #{memId}
+    <select id="findUserId" parameterType="String" resultType="member">
+        SELECT  MEM_ID
+            ,MEM_TYPE
+            ,MEM_USER_ID
+            ,MEM_USER_PW
+            ,MEM_NM
+            ,MEM_SEX
+            ,MEM_BIRTH
+            ,MEM_EMAIL
+            ,MEM_TEL1
+            ,MEM_TEL2
+            ,MEM_TEL3
+            ,MEM_ZIP
+            ,MEM_ADDR
+            ,REG_TIME
+            ,CREATED_BY
+            ,UPDATE_TIME
+            ,MODIFIED_BY
+        FRPM MEMBER
+        WHERE MEM_USER_ID = #{userId}
     </select>
-    <select id="list" parameterType="member" resultType="member">
-        SELECT * FROM MEMBER
+    <select id="list"  resultType="member">
+        SELECT MEM_ID
+        ,MEM_TYPE
+        ,MEM_USER_ID
+        ,MEM_USER_PW
+        ,MEM_NM
+        ,MEM_SEX
+        ,MEM_BIRTH
+        ,MEM_EMAIL
+        ,MEM_TEL1
+        ,MEM_TEL2
+        ,MEM_TEL3
+        ,MEM_ZIP
+        ,MEM_ADDR
+         FROM MEMBER
         WHERE 1=1
-        <if test='MEM_ID != null and MEM_ID != ""'>
-            MEM_ID = #{MEM_ID}
-        </if>
-
         ORDER BY MEM_ID DESC
     </select>
     <select id="info" parameterType="String" resultType="member">
         SELECT * FRPM MEMBER
          WHERE MBM_ID = #{memId}
     </select>
-    <insert id="insert" parameterType="member">
+    <insert id="insert" parameterType="member" >
         INSERT INTO MEMBER (
                 MEM_TYPE
                 ,MEM_USER_ID

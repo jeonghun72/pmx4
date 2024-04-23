@@ -25,18 +25,17 @@ public class Member extends BaseEntity {
 
     private String memBirth;
 
+    private String memEmail;
+
     private String memTel1;
 
     private String memTel2;
 
     private String memTel3;
 
-    private String memEmail;
-
     private String memZip;
 
     private String memAddr;
-
 
 
     public static Member createMember(MemberDTO memberDto , PasswordEncoder passwordEncoder){
